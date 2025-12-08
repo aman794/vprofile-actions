@@ -1,0 +1,35 @@
+name: 'Test'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build
+        run: echo "Building the project..."
+        run: mvn install
+  Testing:
+    runs-on: ubuntu-latest
+    needs: Build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Test
+        run: echo "Testing the project..."
+        run: mvn test
+
+      - name: Checkstyle
+        run: echo "Checking code style..."
+        run: mvn checkstyle:checkstyle

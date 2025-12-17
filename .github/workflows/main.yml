@@ -1,9 +1,9 @@
 name: 'Test'
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   pull_request:
     branches:
       - main
@@ -14,7 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Build
         run: mvn install
@@ -25,6 +27,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Test
         run: mvn test

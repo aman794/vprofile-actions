@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Test
-        run: mvn test
+        run: mave test
 
       - name: Checkstyle
         run: mvn checkstyle:checkstyle

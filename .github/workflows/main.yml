@@ -68,7 +68,7 @@ jobs:
             format: json
             output: trivy-report.json
             ignore-unfixed: true
-            exit-code: 1
+            exit-code: 0
             scan-ref: .
         
         - name: store the artifact

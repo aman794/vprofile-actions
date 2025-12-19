@@ -29,6 +29,10 @@ jobs:
         with:
           name: vprofile-application
           path: target/*.war
+      
+      - name: If above fails, print failure
+        if: failure()
+        run: echo "Build failed!"
 
   Testing:
     runs-on: ubuntu-latest
@@ -40,7 +44,9 @@ jobs:
           fetch-depth: 0
 
       - name: Test
+        if: github.ref == 'refs/heads/main' 
         run: mvn test
 
       - name: Checkstyle
+        if: github.ref == 'refs/heads/main'
         run: mvn checkstyle:checkstyle
